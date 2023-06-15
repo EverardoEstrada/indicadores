@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\importerController;
+use App\Http\Controllers\AlumnosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +18,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/alumnos');
 });
+
+Route::get('/importar', [importerController::class, 'muestraImportacion' ]);
+Route::post('/importarArchivo', [importerController::class, 'importaAlumnos' ]);
+
+Route::get('/alumnos', [AlumnosController::class, 'index' ]);
+Route::post('/alumnos', [AlumnosController::class, 'index' ]);
+
+Route::get('/materias', [AlumnosController::class, 'materias' ]);
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
